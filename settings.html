@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecast Enrollment</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: 'Poppins';
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Forecasting Enrollment</h2>
+        <nav class="navigation" id="Topnav">
+            <ul>
+                <a href="inventory.html" class="inactive-nav">Inventory</a>
+                <a href="forecasts.html" class="inactive-nav">Forecasts</a>
+                <a href="help.html" class="inactive-nav">Help</a>
+                <a href="settings.html" class="active-nav">Settings</a>
+                <button class="btnSignOut-popup" onclick="location.href='index.html'" type="button">Sign
+                    Out</button>
+                <a href="javascript:void(0);" class="icon" onclick="navFunction()">
+                    <i class="fa fa-bars"></i></a>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div class="settings-section">
+            <div class="settings-wrapper">
+                <form action="#">
+                    <h1 class="title-settings">Email Alerts</h1>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="person"></ion-icon></span>
+                        <input type="name" required>
+                        <label>Name</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <p class="header-settings">Select Location(s) of Interest:</p>
+                    <div class="location-input">
+                        <label><input type="checkbox"> Toronto Site</label>
+                    </div>
+                    <div class="location-input">
+                        <label><input type="checkbox"> Calgary Site</label>
+                    </div>
+                    <p class="headers-settings">Select Content of Email Alerts:</p>
+                    <div class="location-input">
+                        <label><input type="checkbox"> Monthly Recruitment Forecasts</label>
+                    </div>
+                    <div class="location-input">
+                        <label><input type="checkbox"> Inventory Warnings</label>
+                    </div>
+                    <div class="location-input">
+                        <label><input type="checkbox"> Restock Suggestions</label>
+                    </div>
+                    <div class="subscribe-space">
+                        <button type="submit" class="login-btn">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+    <script src="sjcl.js"></script>
+    <script src="user.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

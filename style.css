@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    padding: 0;
+    display: flex;
+    background: #fff5ff;
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+section {
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.logo {
+    font-size: 2em;
+    color: #162938;
+    user-select: none;
+}
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #162938;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #162938;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.navigation .btnSignOut-popup {
+    width: 130px;
+    height: 50px;
+    background: #fff5ff;
+    border: 2px solid #162938;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #162938;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.navigation .btnLogin-popup:hover {
+    background: #162938;
+    color: #fff5ff;
+}
+
+.navigation .active-nav {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: #fff5ff;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, fheight .2s ease;
+}
+
+.months-wrapper {
+    padding-left: 27px;
+}
+
+.settings-wrapper {
+    position: relative;
+    width: 400px;
+    height: 650px;
+    background: #fff5ff;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.wrapper.active-popup {
+    transform: scale(1);
+}
+
+.wrapper.active {
+    height: 440px;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.wrapper.active .form-box.register {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #162938;
+    font-size: 2em;
+    color: #162938;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.form-box h2 {
+    font-size: 2em;
+    color: #162938;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #162938;
+    margin: 30px 0;
+}
+
+.input-month {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-bottom: 2px solid #162938;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #162938;
+    line-height: 57px;
+}
+
+.input-month {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.remember-forgot {
+    font-size: .9em;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input {
+    accent-color: #162938;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: #162938;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.login-btn {
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+.month-btn {
+    width: 180px;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+.C-btn-space,
+.T-btn-space {
+    padding-top: 10px;
+    padding-bottom: 100px;
+}
+
+.update-wrapper {
+    padding-left: 300px;
+}
+
+.updateC-btn,
+.updateT-btn {
+    width: 100px;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+.register-btn {
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+.login-btn:hover {
+    color: #162938;
+    background: #c8dcf0;
+}
+
+.register-btn:hover {
+    color: #162938;
+    background: #c8dcf0;
+}
+
+.login-register {
+    font-size: .9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a {
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+
+}
+
+.content-table thead tr {
+    background-color: #162938;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table tb {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    color: #162938;
+}
+
+.content-table tbody tr:nth-() {
+    background-color: #353435;
+    color: white;
+}
+
+.content-table tbody tr:last-of-type {
+    text-align: center;
+    border-bottom: 2px solid #162938;
+}
+
+.normal-text {
+    padding-left: 20px;
+    padding-bottom: 15px;
+}
+
+.input-button {
+    padding-left: 60px;
+    transform: scale(1.25);
+}
+
+.content-table {
+    padding-left: 100px;
+}
+
+.video-support {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.index-section {
+    padding-left: 550px;
+    padding-top: 80px;
+}
+
+.help-section {
+    padding-left: 300px;
+}
+
+.title-settings {
+    padding-left: 50px;
+    padding-bottom: 20px;
+}
+
+.header-settings {
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.headers-settings {
+    padding-top: 25px;
+    padding-bottom: 15px;
+}
+
+.subscribe-space {
+    padding-top: 25px;
+}
+
+.settings-section {
+    padding-left: 500px;
+}
+
+.months-text {
+    padding-top: 50px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+}
+
+.forecast-section {
+    padding-left: 100px;
+}
+
+.inventory-text {
+    padding-left: 200px;
+    padding-top: 20px;
+}
+
+.month-btn-space {
+    padding-bottom: 50px;
+}
+
+.change-text {
+    padding-bottom: 10px;
+}

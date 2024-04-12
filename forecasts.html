@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecast Enrollment</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Poppins';
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Forecasting Enrollment</h2>
+        <nav class="navigation" id="Topnav">
+            <ul>
+                <a href="inventory.html">Inventory</a>
+                <a href="forecasts.html" class="active-nav">Forecasts</a>
+                <a href="help.html">Help</a>
+                <a href="settings.html">Settings</a>
+                <button class="btnSignOut-popup" onclick="location.href='index.html'" type="button">Sign
+                    Out</button>
+                <a href="javascript:void(0);" class="icon" onclick="navFunction()">
+                    <i class="fa fa-bars"></i></a>
+
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div class="forecast-section">
+            <h3 class="normal-text">
+                Import an Excel (.xlsx) file with recruitment data from last year:
+            </h3>
+            <input type="file" id="input-xlsx" class="input-button">
+            <div id="input-xlsx"></div>
+            <h3 class="months-text">
+                Early 2024 Recruits:</h3>
+            <div class="months-wrapper">
+                <form action="#">
+                    <div class="input-month">
+                        <label>January 2024</label>
+                        <br>
+                        <input type="number" required>
+                    </div>
+                    <br>
+                    <div class="input-month">
+                        <label>February 2024</label>
+                        <br>
+                        <input type="number" required>
+                    </div>
+                    <br>
+                    <div class="input-month">
+                        <label>March 2024</label>
+                        <br>
+                        <input type="number" required>
+                    </div>
+                    <br>
+                </form>
+                <div class="month-btn-space">
+                    <button type="submit" id="month-btn" class="month-btn">Insert Data</button>
+                </div>
+            </div>
+
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+            <script>
+                var input = document.getElementById('input-xlsx');
+                input.addEventListener('change', function () {
+                    readXlsxFile(input.files[0]).then(function (data) {
+                        var i = 0;
+                        data.map((row, index) => {
+                            if (i == 0) {
+                                let table = document.getElementById('tbl-data');
+                                generateTableHead(table, row);
+                            }
+                            if (i > 0) {
+                                let table = document.getElementById('tbl-data');
+                                generateTableRows(table, row);
+                            }
+                            i++;
+
+                        });
+                    });
+                });
+                function generateTableHead(table, data) {
+                    let thead = table.createTHead();
+                    let row = thead.insertRow();
+                    for (let key of data) {
+                        let th = document.createElement('th');
+                        let text = document.createTextNode(key);
+                        th.appendChild(text);
+                        row.appendChild(th);
+                    }
+                }
+                function generateTableRows(table, data) {
+                    let tbody = table.createTBody();
+                    let newRow = tbody.insertRow(-1);
+                    data.map((row, index) => {
+                        let newCell = newRow.insertCell();
+                        let newText = document.createTextNode(row);
+                        newCell.appendChild(newText);
+                    });
+                }
+            </script>
+
+
+            <div id="input-xlsx"></div>
+            <table id="tbl-data" class="content-table"></table>
+            <div id="chart_div" class="chart-div"></div>
+            <script src="https://unpkg.com/read-excel-file@4.x/bundle/read-excel-file.min.js"></script>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                google.charts.load('current', { 'packages': ['line', 'corechart'] });
+                var monthButton = document.getElementById('month-btn');
+                monthButton.addEventListener("click", drawChart);
+                function drawChart() {
+
+                    var chartDiv = document.getElementById('chart_div');
+
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Month');
+                    data.addColumn('number', '2023 Actual: ');
+                    data.addColumn('number', '2024 Forecast:  ');
+
+                    data.addRows([
+                        ['January', 1, 1],
+                        ['February', 2, 1],
+                        ['March', 5, 6],
+                        ['April', 7, 7],
+                        ['May', 6, 6],
+                        ['June', 5, 6],
+                        ['July', 6, 6],
+                        ['August', 5, 6],
+                        ['September', 5, 5],
+                        ['October', 3, 3],
+                        ['November', 4, 3],
+                        ['December', 4, 3]
+                    ]);
+
+                    var classicOptions = {
+                        title: '2023 Monthly Recruitment Data vs 2024 Monthly Forecast',
+                        backgroundColor: { fill: 'transparent' },
+
+                        width: 1499,
+                        height: 900,
+                        // Gives each series an axis that matches the vAxes number below.
+                        series: {
+                            0: { targetAxisIndex: 0 },
+                            1: { targetAxisIndex: 1 }
+                        },
+                        vAxes: {
+                            // Adds titles to each axis.
+                            0: { title: 'Number of Total Monthly Recruits' },
+                        },
+                        vAxis: {
+                            viewWindow: {
+                                max: 10
+                            }
+                        }
+                    };
+
+                    function drawClassicChart() {
+                        var classicChart = new google.visualization.LineChart(chartDiv);
+                        classicChart.draw(data, classicOptions);
+                    }
+
+                    drawClassicChart();
+
+                }
+            </script>
+        </div>
+    </section>
+</body>
+
+</html>

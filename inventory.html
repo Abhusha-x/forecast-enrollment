@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecast Enrollment</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script>
+        wrapper.classList.add('active-popup');
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Forecasting Enrollment</h2>
+        <nav class="navigation" id="Topnav">
+            <ul>
+                <a href="inventory.html" class="active-nav">Inventory</a>
+                <a href="forecasts.html" class="inactive-nav">Forecasts</a>
+                <a href="help.html" class="inactive-nav">Help</a>
+                <a href="settings.html" class="inactive-nav">Settings</a>
+                <button class="btnSignOut-popup" onclick="location.href='index.html'" type="button">Sign
+                    Out</button>
+                <a href="javascript:void(0);" class="icon" onclick="navFunction()">
+                    <i class="fa fa-bars"></i></a>
+
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div class="inventory-section">
+            <h1 class="inventory-text">Clinical Trial Inventory - Toronto Site</h1>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">google.charts.load('current', { packages: ['corechart', 'bar'] });
+                google.charts.setOnLoadCallback(drawToronto);
+                var totalT = 63;
+                var stockT = 59;
+                function drawToronto() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Inventory', 'In Stock', 'Forecast'],
+                        ['', stockT, totalT - stockT],
+                    ]);
+
+                    var options = {
+                        width: 1499,
+                        height: 650,
+                        chartArea: { width: '50%' },
+                        isStacked: true,
+                        backgroundColor: { fill: 'transparent' },
+                        hAxis: {
+                            title: 'Number of Kits',
+                            minValue: 0,
+                        },
+                        vAxis: {
+                            title: ''
+                        }
+                    };
+                    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+                }</script>
+            <div id="chart_div" class="chart"></div>
+
+
+            <div class="update-wrapper">
+                <h3 class="change-text">
+                    Update Toronto Inventory: </h3>
+                <form action="#">
+                    <div class="input-month">
+                        <input type="number" required>
+                        <label> additional kits purchased on </label>
+                    </div>
+                    <div class="input-month">
+                        <input type="number" required>
+                        <label> (mm/dd/yyyy). </label>
+                    </div>
+                    <div class="T-btn-space">
+                        <button type="submit" id="updateT-btn" class="updateT-btn">Update</button>
+                    </div>
+                </form>
+            </div>
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        </div>
+        <div class="inventory-section">
+            <h1 class="inventory-text">Clinical Trial Inventory - Calgary Site</h1>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">google.charts.load('current', { packages: ['corechart', 'bar'] });
+                google.charts.setOnLoadCallback(drawCalgary);
+                var totalC = 14;
+                var stockC = 12;
+
+                function drawCalgary() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Inventory', 'In Stock', 'Forecast'],
+                        ['', stockC, totalC - stockC],
+                    ]);
+
+                    var options = {
+                        width: 1499,
+                        height: 650,
+                        chartArea: { width: '50%' },
+                        isStacked: true,
+                        backgroundColor: { fill: 'transparent' },
+                        hAxis: {
+                            title: 'Number of Kits',
+                            minValue: 0,
+                        },
+                        vAxis: {
+                            title: ''
+                        }
+                    };
+                    var chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
+                    chart.draw(data, options);
+                }</script>
+
+            <div id="chart_div1" class="chart"></div>
+
+            <div class="update-wrapper">
+                <h3 class="change-text">
+                    Update Calgary Inventory: </h3>
+                <form action="#">
+                    <div class="input-month">
+                        <input type="number" required>
+                        <label> additional kits purchased on </label>
+                    </div>
+                    <div class="input-month">
+                        <input type="number" required>
+                        <label> (mm/dd/yyyy). </label>
+                    </div>
+                    <div class="C-btn-space">
+                        <button type="submit" id="updateC-btn" class="updateC-btn">Update</button>
+                    </div>
+                </form>
+            </div>
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        </div>
+    </section>
+</body>
+
+</html>
